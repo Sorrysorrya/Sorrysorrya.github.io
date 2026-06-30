@@ -300,6 +300,46 @@ body {
 .widget dt {
   font-weight: bold;
 }
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999;
+  overflow: hidden;
+}
+.video-bg video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+.bg-mask {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: -998;
+  top: 0;
+  left: 0;
+}
+@media screen and (max-width: 768px) {
+  .video-bg video {
+    display: block;
+  }
+}
+#banner {
+  display: none !important;
+}
 #header {
   height: 300px;
   position: relative;
