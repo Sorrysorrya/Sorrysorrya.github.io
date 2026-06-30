@@ -1,0 +1,22 @@
+<footer id="footer">
+  <% if (theme.sidebar === 'bottom'){ %>
+    <%- partial('_partial/sidebar') %>
+  <% } %>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <% if (theme.copyright){ %>
+        <%- render(theme.copyright, 'pug'); %>
+      <% } %>
+      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
+      <%= __('powered_by') %> <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 全屏视频背景 -->
+<div class="video-bg">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="/img/bg.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="bg-mask"></div>
