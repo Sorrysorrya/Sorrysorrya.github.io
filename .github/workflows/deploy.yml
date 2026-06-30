@@ -15,6 +15,10 @@ jobs:
         with:
           node-version: 20
 
+      # 新增：全局安装hexo命令行工具，解决hexo找不到问题
+      - name: 全局安装Hexo CLI
+        run: npm install -g hexo-cli
+
       - name: 安装项目依赖
         run: npm install
 
