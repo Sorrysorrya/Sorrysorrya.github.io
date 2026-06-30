@@ -1,5 +1,4 @@
 name: Hexo自动部署GitHub Pages
-# 仅main分支提交时触发构建
 on:
   push:
     branches: [ main ]
@@ -8,31 +7,29 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取源码 + 自动同步git子模块（解决主题缺失问题）
       - name: 拉取源码与子模块主题
         uses: actions/checkout@v4
         with:
           submodules: true
 
-      # 2. 配置Node.js环境
       - name: 配置Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3. 全局安装Hexo命令行，解决hexo: command not found
       - name: 全局安装Hexo CLI
         run: npm install -g hexo-cli
 
-      # 4. 安装项目本地依赖
       - name: 安装项目依赖
         run: npm install
 
-      # 5. 清理旧静态文件，生成全新站点
       - name: 清理并生成静态页面
         run: hexo clean && hexo generate
 
-      # 6. 推送静态页面到gh-pages分支
+      # 新增：在静态站点根目录生成.nojekyll，上传到gh-pages分支
+      - name: 写入.nojekyll 屏蔽Jekyll
+        run: touch public/.nojekyll
+
       - name: 部署静态文件至gh-pages分支
         uses: peaceiris/actions-gh-pages@v4
         with:
